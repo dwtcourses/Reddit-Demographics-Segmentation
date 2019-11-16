@@ -1,6 +1,7 @@
 import ETL
 import Commands
 
+#License:ThisIsMyStuffBitch
 
 
 class Pipeline:
@@ -42,7 +43,7 @@ def build_pipeline():
 
 
 def run(pipeline_model):
-	
+
  	while True:
  		pass
 
