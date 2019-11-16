@@ -4,16 +4,6 @@ import Commands
 #License:ThisIsMyStuffBitch
 
 
-class Pipeline:
-
-
-	#loading the processing modules to the pipe
-	def __init__ (self, extract, transform,load)
-		self.extract = extract
-		self.transform = transform
-		self.load = load
-
-
 
 def get_extraction_params(path):
 	return ExtractionCommand()
