@@ -20,13 +20,17 @@ class Extractor:
 	def __init__(self, command):
 		pass
 
+	"""
+	Will perform different extraction schemes depending on the ETL configuration
+	
+	"""	
+	def extraction_source_table(self):
 
-	def extraction_table(self):
+		if self.command.source == 'WS':
+			pass
+		elif self.command.source == 'API_1'
+			pass
 
-		if command.source == 'WS':
-			pass
-		elif
-			pass
 
 
 class Transforms:
