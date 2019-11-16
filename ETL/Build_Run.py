@@ -9,7 +9,7 @@ def get_extraction_params(path):
 	return ExtractionCommand()
 
 def get_transform_params(path):
-	return LoadingCommand()
+	return TransformCommand()
 
 def get_load_params(path):
 	return LoadingCommand()
