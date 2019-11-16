@@ -31,8 +31,6 @@ class Extractor:
 		elif self.command.source == 'API_1'
 			pass
 
-
-
 class Transforms:
 
 	def __init__(self, command):
@@ -41,6 +39,30 @@ class Transforms:
 
 class Loader:
 	def __init__(self, command):
+		pass
+
+
+
+class Pipeline:
+
+	#loading the processing modules to the pipe
+	def __init__ (self, extract, transform,load)
+		self.extract = extract
+		self.transform = transform
+		self.load = load
+
+	
+	def extract(self):
+		pass
+
+		
+
+	def transform(self):
+		pass
+
+
+
+	def load(self):
 		pass
 
 

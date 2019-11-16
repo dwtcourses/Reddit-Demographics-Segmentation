@@ -8,7 +8,7 @@ class Pipeline:
 
 
 	#loading the processing modules to the pipe
-	def__init__ (self, extract, transform,load)
+	def __init__ (self, extract, transform,load)
 		self.extract = extract
 		self.transform = transform
 		self.load = load

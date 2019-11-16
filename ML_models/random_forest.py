@@ -4,6 +4,7 @@ dev_mode = True
 
 #License: ThisIsMyStuffBitch
 #a portable implementation of a random forest
+
 class RandomForest:
 
 	def __init__(self, config):
