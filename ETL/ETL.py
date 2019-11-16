@@ -12,7 +12,7 @@ License: ThisIsMyStuffBitch
 
 """
 
-dev_mode = true
+dev_mode = True
 
 
 class Extractor:
@@ -37,6 +37,7 @@ class Transforms:
 
 class Loader:
 	def __init__(self, command):
+		pass
 
 
 
