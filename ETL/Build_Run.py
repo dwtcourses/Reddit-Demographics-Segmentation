@@ -19,15 +19,18 @@ def get_load_params(path):
 def build_pipeline():
 
 	#we get the schemes from the pipeline specs file
+	print('Getting achitecture Specs...')
 	extract_params = get_extraction_params('placeholder')
 	transform_params = get_transform_params('placeholder')
 	load_params = get_load_params('placeholder')
 
+	print('Building...\n')
 	#we can now build the ETL components
 	extract_comp = Extractor(extract_params)
 	transform_comp = Transforms(transform_params)
 	load_comp = Loader(load_params)
 
+	print('done.')
 	return Pipeline(extract_comp, transform_comp, load_comp)
 
 
@@ -35,7 +38,9 @@ def build_pipeline():
 def run(pipeline_model):
 
  	while True:
- 		pass
+ 		pipeline_model.get_batch()
+
+ 		
 
 
 
