@@ -3,7 +3,7 @@ import sys
 sys.path.append('/scrapers')
 from spider_api import Swarm 
 import pandas as pd
-
+from nltk.tokenize import MWETokenizer
 spiders_config_path = '/scrapers/config/spiders.txt'
 
 """
@@ -86,15 +86,53 @@ class Transforms:
 		self.transformations = params.transformations
 
 
-	def map(self, operator):
-		pass
+
+	#template for what the transform table should eventually look like 
+	def prepare_operators(operator_list):
+
+		operators = []
+		for operator_name in operator_list:
+
+		
+			if operator == "tokenize":
+
+				tokenizer = lambda sentence : tokenize(sentence.split())  
+				operators.append(tokenizer)
+
+
+			elif operator == "trim":
+				
+				#just an example
+				trimmer = lambda sentence: sentence
+				operators.append(trimmer)
+
+			else:
+				print('Invalid operator')
+
+
+		return operators
+
+
+
+	def map(self,data_batch, operators):
+		
+		for operator in operators:
+			operator(data_batch)
+
+		return data_batch
+
+
 
 	def run(self, data_batch):
 
-		#applying all transforms over the extracted batch
-		for transform in transforms:
-			pass
-		
+		print('Preparing the issued transforms')
+		operators = self.prepare_operators(self.params.transforms)
+		print('Num mappings = ', len(operators))
+		processed_data = self.map(data_batch, operators)
+		print('done.')
+		print('\nThe current batch is prepared for further processing.')
+		input('\nPress enter to continue...')
+
 
 
 class Loader:
