@@ -11,7 +11,7 @@ class Pipeline:
 
 
 	#loading the pipe processing modules 
-	
+
 	def __init__ (self, extract, transform,load)
 		
 		self.extract = extract
@@ -22,6 +22,8 @@ class Pipeline:
 	def get_batch(self):
 
 		print('Initializing extraction session...')
+		
+		
 		self.load.run(self.transform.run(self.extract.run()))
 		print('done.')
 

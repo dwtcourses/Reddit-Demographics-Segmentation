@@ -16,52 +16,77 @@ License: ThisIsMyStuffBitch
 dev_mode = True
 
 
+def build_spiders():
+	pass
+
+def get_stream():
+	pass
+	
+
 class Extractor:
 
-	def __init__(self, command):
+	def __init__(self, params):
+		pass
 
-		self.cycle_time = command.schedule #how many hours have to pass between batch extractions
-		self.last_batch = None #an hour of the day
-		self.num_batches = command.num_batches
 
-	
 	#Will perform different extraction schemes depending on the ETL configuration
-	def extractors_table(self):
-
+	def init_extractors(self):
+		
+		extractors = []
+		
 		if self.command.source == 'WS':
-			pass
+			extractors = build_spiders()
+
 		elif self.command.source == 'API_1'
-			pass
+			extractors = get_stream()
+
+		return extractors
+
+
+	def extract_batch(extractors, self):
+
+		batch = pd.DataFrame()
+
+		for extractor in extractors:
+			batch = extractor.grip() 
+			#append operation (still figuring this out)
+
+		return batch
+
+
 
 	def run(self):
-		pass
+		
+		extractors = self.init_extractors()
+		data_batch = self.extract_batch(extractors)
+
+		return data_batch
+
 
 
 
 
 class Transforms:
 
-	def __init__(self, command):
+	def __init__(self, params):
+
 		self.transformations = command.transformations
-
-	def transforms_table(self):
-
-		#applying all transforms over the extracted batch
-		for transform in transforms:
 
 
 	def map(self, operator):
 		pass
 
-	def run(self):
-		pass
-		
+	def run(self, data_batch):
 
+		#applying all transforms over the extracted batch
+		for transform in transforms:
+			self.
+		
 
 
 class Loader:
 
-	def __init__(self, command):
+	def __init__(self, params):
 		pass
 
 	def run(self):
