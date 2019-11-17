@@ -21,7 +21,7 @@ def build_pipeline(type_):
 	transform_comp = Transforms(transform_params)
 	load_comp = Loader(load_params)
 
-	pipeline = Pìpleline(type_, extract_comp, transform_comp, load_comp))
+	pipeline = Pìpleline(type_, extract_comp, transform_comp, load_comp)
 
 	print('done.')
 

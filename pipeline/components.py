@@ -1,7 +1,7 @@
 
 import sys
 sys.path.append('/scrapers')
-from spider_api import Spider as Extractor
+from spider_api import Swarm 
 import pandas as pd
 
 spiders_config_path = '/scrapers/config/spiders.txt'
@@ -41,36 +41,32 @@ class Extractor:
 		
 		if self.params.source == 'WS':
 
-			global scrapers_config_path
+			global spiders_config_path
 			extraction_commands = load_deploy_commands(scrapers_config_path)
 
 		return extraction_commands
 
 
 
-	def extract_batch(self, extraction_commands, verbose = False):
+	def launch_swarm(self, extraction_commands, verbose = False):
 
-		batches = pd.DataFrame()
+		batch = pd.DataFrame()
 		print('Deploying...\n')
-		
-		for command in extraction_commands:
-
-			extractor = Extractor(command)
-
-			extractor.grip() 
-			batch = extractor.yield_batch()
-			#append operation (still figuring this out)
-			#batches.append(batch)
-
+		spider_swarm = Swarm(extraction_commands)
+		spider_swarm.grip() 
+		batch = spider_swarm.retrieve_batch()
 		print('\ndone.')
-		return batches
+		return batch
 
 
 
 	def run(self):
 		
 		extractors = self.prepare()
-		data_batch = self.extract_batch(extractors)
+
+		if self.params.source == 'WS':
+			data_batch = self.launch_swarm(extractors)
+
 
 		return data_batch
 
