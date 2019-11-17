@@ -1,7 +1,6 @@
 
 import sys
-sys.path.append('/extractors')
-
+sys.path.append('/scrapers')
 from spider import *
 from api import * as redit_api
 import pandas as pd
@@ -45,11 +44,18 @@ class Transforms:
 	def __init__(self, command):
 		self.transformations = command.transformations
 
+	def transforms_table(self):
+
+		#applying all transforms over the extracted batch
+		for transform in transforms:
+
+
+	def map(self, operator):
+		pass
 
 	def run(self):
 		pass
 		
-
 
 
 

@@ -10,7 +10,8 @@ from datetime import datetime, timedelta
 class Pipeline:
 
 
-	#loading the processing modules to the pipe
+	#loading the pipe processing modules 
+	
 	def __init__ (self, extract, transform,load)
 		
 		self.extract = extract
@@ -18,13 +19,10 @@ class Pipeline:
 		self.load = load
 
 
-
 	def get_batch(self):
 
 		print('Initializing extraction session...')
-		self.extract.run()
-		self.transform.run() 
-		self.load.run()
+		self.load.run(self.transform.run(self.extract.run()))
 		print('done.')
 
 
