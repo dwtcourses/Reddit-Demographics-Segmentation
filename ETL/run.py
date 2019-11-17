@@ -1,5 +1,5 @@
 from Components import *
-from Commands import *
+from Configurators import *
 from ETL import *
 
 
@@ -11,9 +11,9 @@ def build_pipeline():
 
 	#we get the schemes from the pipeline specs file
 	print('Getting achitecture Specs...')
-	extract_params =  ExtractionCommand('placeholder')
-	transform_params = TransformCommand('placeholder')
-	load_params = LoadingCommand('placeholder')
+	extract_params =  ExtractionConfigurator()
+	transform_params = TransformConfigurator()
+	load_params = LoadingConfigurator()
 
 	print('Building...\n')
 	#we can now build the ETL components
