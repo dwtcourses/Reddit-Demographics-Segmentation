@@ -1,6 +1,7 @@
-from ETL import *
+from Components import *
 from Commands import *
-from Pipeline import *
+from ETL import *
+
 
 #License:ThisIsMyStuffBitch
 
@@ -21,9 +22,11 @@ def build_pipeline():
 	load_comp = Loader(load_params)
 
 	pipeline = Pìpleline(extract_comp, transform_comp, load_comp))
+
 	print('done.')
 
 	return pipeline
+
 
 
 def run(pipeline_model):
