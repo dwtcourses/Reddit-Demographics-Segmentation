@@ -7,7 +7,7 @@ from etl import *
 
 
 
-def build_pipeline():
+def build_pipeline(type_):
 
 	#we get the schemes from the pipeline specs file
 	print('Getting achitecture Specs...')
@@ -21,7 +21,7 @@ def build_pipeline():
 	transform_comp = Transforms(transform_params)
 	load_comp = Loader(load_params)
 
-	pipeline = Pìpleline(extract_comp, transform_comp, load_comp))
+	pipeline = Pìpleline(type_, extract_comp, transform_comp, load_comp))
 
 	print('done.')
 
@@ -29,16 +29,15 @@ def build_pipeline():
 
 
 
-def run(pipeline_model):
+def start(pipeline_model):
 
- 	while True:
- 		pipeline_model.get_batch()
+ 	pipeline_model.run()
 
 
 
 
 if __name__ == '__main__':
-	etl = build_pipeline()
-	run(etl)
+	etl = build_pipeline('etl')
+	start(etl)
 
 

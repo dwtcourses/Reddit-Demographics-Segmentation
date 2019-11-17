@@ -12,25 +12,36 @@ class Pipeline:
 
 	#loading the pipe processing modules 
 
-	def __init__ (self, extract, transform,load)
+	def __init__ (self,type_, extract, transform,load)
 		
 		self.extract = extract
 		self.transform = transform
 		self.load = load
+		self.type = type_
+
 
 
 	def get_batch(self):
 
-		print('Initializing extraction session...')
+		print('Issuing a new extraction.')
 		
+		if self.type == 'etl':
 		
-		self.load.run(self.transform.run(self.extract.run()))
+			self.load.run(self.transform.run(self.extract.run()))
+
+		elif self.type == 'elt':
+
+			self.transform.run(self.load.run(self.extract.run()))
+
+
 		print('done.')
 
 
-	def schedule(self):
-		pass
 
+	def run(self):
+		while True:
+			pass 
+			#scheduling stuff
 
 
 

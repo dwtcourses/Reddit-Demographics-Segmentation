@@ -1,8 +1,7 @@
 
 import sys
 sys.path.append('/scrapers')
-from spider import *
-from api import * as redit_api
+from spider_api import Spider
 import pandas as pd
 
 
@@ -13,51 +12,59 @@ License: ThisIsMyStuffBitch
 
 """
 
-dev_mode = True
 
-
-def build_spiders():
-	pass
-
-def get_stream():
-	pass
+def load_deploy_commands():
 	
+	deploy_commands = []
+
+	"""
+	grabs the dictionary with url seed, rules, domain and the number of spiders
+	"""
+
+	return deploy_commands
+
+
 
 class Extractor:
+
 
 	def __init__(self, params):
 		pass
 
 
-	#Will perform different extraction schemes depending on the ETL configuration
-	def init_extractors(self):
+	#Will perform different extraction schemes depending on the ETL configuration specified at the extractor configurator
+	def prepare(self):
 		
-		extractors = []
+		extraction_commands = []
 		
-		if self.command.source == 'WS':
-			extractors = build_spiders()
+		if self.params.source == 'WS':
+			
+			extraction_commands = load_deploy_commands()
 
-		elif self.command.source == 'API_1'
-			extractors = get_stream()
-
-		return extractors
+		return extraction_commands
 
 
-	def extract_batch(extractors, self):
 
-		batch = pd.DataFrame()
+	def extract_batch(self, extraction_commands):
 
-		for extractor in extractors:
-			batch = extractor.grip() 
+		batches = pd.DataFrame()
+
+		
+		for command in extraction_commands:
+
+			extractor = Spider(command)
+			extractor.grip() 
+			batch = extractor.yield_batch()
 			#append operation (still figuring this out)
+			#batches.append(batch)
 
-		return batch
+		return batches
 
 
 
 	def run(self):
 		
-		extractors = self.init_extractors()
+		extractors = self.prepare()
 		data_batch = self.extract_batch(extractors)
 
 		return data_batch
@@ -70,7 +77,7 @@ class Transforms:
 
 	def __init__(self, params):
 
-		self.transformations = command.transformations
+		self.transformations = params.transformations
 
 
 	def map(self, operator):
@@ -80,7 +87,7 @@ class Transforms:
 
 		#applying all transforms over the extracted batch
 		for transform in transforms:
-			self.
+			pass
 		
 
 

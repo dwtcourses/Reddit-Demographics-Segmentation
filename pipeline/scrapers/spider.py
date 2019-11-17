@@ -3,6 +3,9 @@
 from scrapy.item import Field, item
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExctractor
+from scrapy.crawler import CrawlerProcess
+
+
 
 
 class RedditComment(Item):
@@ -11,7 +14,8 @@ class RedditComment(Item):
 
 
 class RedditCrawler(CrawlSpider):
-	name = "RedditCrawler"
+	
+	name = "Crawler"
 	start_url = ""
 	allowed_domains = ['']
 
@@ -25,5 +29,6 @@ class RedditCrawler(CrawlSpider):
 
 
 
+
 if __init__ == '__main__':
-	pass
+	run_spider()
