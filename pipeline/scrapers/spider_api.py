@@ -3,12 +3,17 @@ import sys
 from spider import *
 
 
+#Wrapper for the scrapy spiders
 
 class Spider:
 
 
 	def __init__(self, deploy_command):
-		pass
+		self.crawler = self.build(deploy_command)
+		
+
+	def build(self, deploy_command):
+		return WebCrawler()
 
 
 	def grip(self):

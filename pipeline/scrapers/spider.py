@@ -13,7 +13,7 @@ class RedditComment(Item):
 	body = Field()
 
 
-class RedditCrawler(CrawlSpider):
+class WebCrawler(CrawlSpider):
 	
 	name = "Crawler"
 	start_url = ""
