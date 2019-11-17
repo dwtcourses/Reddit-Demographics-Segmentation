@@ -1,9 +1,9 @@
 
 
-import Random_Forest
-import SVM
-
+from RandomForest import *
+from SVM import *
 import sys
+
 
 sys.path.append('/Neural_nets')
 import DNN
