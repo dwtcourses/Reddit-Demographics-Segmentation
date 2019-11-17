@@ -51,9 +51,10 @@ class Extractor:
 	def launch_swarm(self, extraction_commands, verbose = False):
 
 		batch = pd.DataFrame()
-		print('Deploying...\n')
+		print('Deploying spiders swarm...\n')
 		spider_swarm = Swarm(extraction_commands)
 		spider_swarm.grip() 
+		print('Retrieving all the obtained data.')
 		batch = spider_swarm.retrieve_batch()
 		print('\ndone.')
 		return batch
@@ -61,13 +62,17 @@ class Extractor:
 
 
 	def run(self):
-		
+
+		print('\nPreparing extraction process...\n')
 		extractors = self.prepare()
+		data_batch = pd.DataFrame({})
 
 		if self.params.source == 'WS':
-			data_batch = self.launch_swarm(extractors)
+			data_batch = launch_swarm(extractors)
 
-
+		
+		print('\nThe data stream is now inside the pipeline!')
+		print('\nReady to perform preparation procedures...')
 		return data_batch
 
 

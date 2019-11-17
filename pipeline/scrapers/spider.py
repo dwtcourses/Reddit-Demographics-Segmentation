@@ -6,6 +6,9 @@ from scrapy.linkextractors import LinkExctractor
 from scrapy.crawler import CrawlerProcess
 
 
+def spider_factory(specs):
+	pass
+
 
 
 class RedditComment(Item):
@@ -13,7 +16,7 @@ class RedditComment(Item):
 	body = Field()
 
 
-class WebCrawler(CrawlSpider):
+class RedditSpider(CrawlSpider):
 	
 	name = "Crawler"
 	start_url = ""

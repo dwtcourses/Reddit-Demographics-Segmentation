@@ -23,7 +23,7 @@ class Pipeline:
 
 	def get_batch(self):
 
-		print('Issuing a new extraction.')
+		print('Issuing a new batch order.')
 		
 		if self.type == 'etl':
 		
