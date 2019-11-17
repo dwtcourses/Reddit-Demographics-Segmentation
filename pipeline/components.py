@@ -1,9 +1,10 @@
 
 import sys
 sys.path.append('/scrapers')
-from spider_api import Spider
+from spider_api import Spider as Extractor
 import pandas as pd
 
+spiders_config_path = '/scrapers/config/spiders.txt'
 
 """
 The extract module performs loading operations over an specified extraction domain. 
@@ -13,7 +14,7 @@ License: ThisIsMyStuffBitch
 """
 
 
-def load_deploy_commands():
+def load_deploy_commands(path):
 	
 	deploy_commands = []
 
@@ -35,29 +36,33 @@ class Extractor:
 	#Will perform different extraction schemes depending on the ETL configuration specified at the extractor configurator
 	def prepare(self):
 		
+
 		extraction_commands = []
 		
 		if self.params.source == 'WS':
-			
-			extraction_commands = load_deploy_commands()
+
+			global scrapers_config_path
+			extraction_commands = load_deploy_commands(scrapers_config_path)
 
 		return extraction_commands
 
 
 
-	def extract_batch(self, extraction_commands):
+	def extract_batch(self, extraction_commands, verbose = False):
 
 		batches = pd.DataFrame()
-
+		print('Deploying...\n')
 		
 		for command in extraction_commands:
 
-			extractor = Spider(command)
+			extractor = Extractor(command)
+
 			extractor.grip() 
 			batch = extractor.yield_batch()
 			#append operation (still figuring this out)
 			#batches.append(batch)
 
+		print('\ndone.')
 		return batches
 
 

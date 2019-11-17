@@ -1,7 +1,7 @@
 
 import sys
 from spider import *
-
+import pandas as pd
 
 #Wrapper for the scrapy spiders
 
@@ -13,18 +13,22 @@ class Spider:
 		
 
 	def build(self, deploy_command):
+
 		return WebCrawler()
 
 
 	def grip(self):
 		
+		print('A new spider has been deployed!\n')
+
 		process = CrawlerProcess(settings={
     	'FEED_FORMAT': 'json',
     	'FEED_URI': 'items.json'
 		})
-
+		print('\nCrawling...')
 		process.crawl(MySpider)
 		process.start() 
+
 
 
 	def yield_batch(self):

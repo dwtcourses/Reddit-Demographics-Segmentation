@@ -1,6 +1,6 @@
 from components import *
 from configurators import *
-from etl import *
+from pipeline import Pipeline
 
 
 #License:ThisIsMyStuffBitch
@@ -30,7 +30,7 @@ def build_pipeline(type_):
 
 
 def start(pipeline_model):
-
+	print('Pipeline now running...\n')
  	pipeline_model.run()
 
 
