@@ -1,8 +1,9 @@
 
 import sys
-sys.path.append('/data_source')
+sys.path.append('/extractors')
 
-import spiders
+from spider import *
+from api import * as redit_api
 import pandas as pd
 
 

@@ -1,6 +1,6 @@
-from Components import *
-from Configurators import *
-from ETL import *
+from components import *
+from configurators import *
+from etl import *
 
 
 #License:ThisIsMyStuffBitch
