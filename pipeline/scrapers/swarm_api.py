@@ -1,46 +1,45 @@
 
 import sys
-import spider
+from spider import RedditSpider
 import pandas as pd
+from scrapy.crawler import CrawlerProcess
 
 #Wrapper for a swarm of scrapy spiders
+#
 
 class Swarm:
 
 
-	def __init__(self, deploy_commands):
 
-		self.crawlers = self.build(deploy_commands)
+	def __init__(self,id_, deploy_commands):
+
+		self.deploy_commands = self.unroll(deploy_commands)
 		self.yield_paths = deploy_commands.yield_paths
+		self.log = []
+		log.append('Swarm id = ', id_)
 		
 
-	def build(self, deploy_commands):
-
-		crawlers = []
-		
-		for command in deploy_commands:
-
-			crawlers.append(spider.factory(command))
-
-		return crawlers
+	def unroll(self):
+		pass
 
 
 	def grip(self, verbose = False):
 
-		print('Starting a new reactor process...')
+		log.append('Starting new reactor...')
+
 		process = CrawlerProcess(settings={
     	'FEED_FORMAT': 'json',
     	'FEED_URI': 'items.json'
 		})
 
-		print('\nCrawling...')
-		for spider in self.crawlers:
-			process.crawl(spider)
+		for commands in self.deploy_commands:
 
-		print('A new spider swarm has been deployed!\n')
+			process.crawl(RedditSpider, deploy_commands.name, deploy_commands.start_url, deploy_commands.allowed_domains)
+
+		log.append('A new spider swarm has been deployed!\n')
 		process.start() 
+		log.append('\ndone.')
 
-		print('\ndone.')
 
 
 	def retrieve_batch(self):
@@ -51,6 +50,7 @@ class Swarm:
 
 		batch = pd.csv_read('placeholder')
 		return batch
+
 
 
 if __name__ == '__main__':

@@ -20,7 +20,6 @@ class Pipeline:
 		self.type = type_
 
 
-
 	def get_batch(self):
 
 		print('Issuing a new batch order.')
@@ -32,7 +31,6 @@ class Pipeline:
 		elif self.type == 'elt':
 
 			self.transform.run(self.load.run(self.extract.run()))
-
 
 		print('done.')
 

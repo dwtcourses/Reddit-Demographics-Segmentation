@@ -19,7 +19,7 @@ def load_deploy_commands(path):
 	deploy_commands = []
 
 	"""
-	grabs the dictionary with url seed, rules, domain and the number of spiders
+	grabs the dictionary with the seed, rules, domain and the number of spiders
 	"""
 
 	return deploy_commands
@@ -51,12 +51,15 @@ class Extractor:
 	def launch_swarm(self, extraction_commands, verbose = False):
 
 		batch = pd.DataFrame()
+	
 		print('Deploying spiders swarm...\n')
-		spider_swarm = Swarm(extraction_commands)
+		spider_swarm = Swarm('Reddit01',extraction_commands)
 		spider_swarm.grip() 
-		print('Retrieving all the obtained data.')
+		print('Retrieving obtained data.')
 		batch = spider_swarm.retrieve_batch()
+	
 		print('\ndone.')
+
 		return batch
 
 
@@ -70,9 +73,9 @@ class Extractor:
 		if self.params.source == 'WS':
 			data_batch = launch_swarm(extractors)
 
-		
 		print('\nThe data stream is now inside the pipeline!')
 		print('\nReady to perform preparation procedures...')
+
 		return data_batch
 
 
@@ -80,6 +83,7 @@ class Extractor:
 
 
 class Transforms:
+
 
 	def __init__(self, params):
 
