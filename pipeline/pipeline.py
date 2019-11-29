@@ -31,6 +31,10 @@ class Pipeline:
 		elif self.type == 'elt':
 
 			self.transform.run(self.load.run(self.extract.run()))
+		
+		else:
+			exit(0)
+
 
 		print('done.')
 

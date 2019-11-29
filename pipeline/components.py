@@ -17,24 +17,14 @@ License: ThisIsMyStuffBitch
 """
 
 
-def load_deploy_commands(path):
-    	
-	deploy_commands = {}
-
-	with open(path) as json_file:
-   		deploy_commands = json.load(json_file)
-
-	return deploy_commands
-
-
 
 class Extract:
 
 
 	def __init__(self, config):
-		
+			
 		self.log = []
-		self.extraction_scheme = config.scheme
+		self.extractor_scheme = config.extractor_scheme
 
 
 
@@ -43,16 +33,14 @@ class Extract:
 		batch = pd.DataFrame({})
 		if verbose == True: self.log.append('Issuing a new extraction...\n')
 
-		extractor = ext.create_extractor('Reddit01',self.extraction_scheme)
+		extractor = ext.create_extractor('Reddit01',self.extractor_scheme)
 		extractor.grip() 
-
 		if verbose == True: self.log.append('Retrieving obtained data.')
 	
 		batch = extractor.retrieve_batch()
+		if verbose == True: self.log.append('Batch specs = ', batch.describe())
+		if verbose == True: for line in self.log: print(line)
 
-		if verbose == True: self.log.append('\ndone.')
-		if verbose == True: for key in self.log: print(key)
-		
 		return batch
 
 
