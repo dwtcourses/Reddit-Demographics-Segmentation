@@ -3,7 +3,7 @@ import sys
 import json
 
 
-from scrapers import scrapers as ext
+from extractors import extractor as ext
 import pandas as pd
 from nltk.tokenize import MWETokenizer
 
@@ -17,50 +17,54 @@ License: ThisIsMyStuffBitch
 """
 
 
+def load_deploy_commands(path):
+    	
+	deploy_commands = {}
+
+	with open(path) as json_file:
+   		deploy_commands = json.load(json_file)
+
+	return deploy_commands
 
 
-class Extractor:
+
+class Extract:
 
 
-	def __init__(self, params):
+	def __init__(self, config):
 		
-		modality = params.modality
 		self.log = []
-
-
-	#Will perform different extraction schemes depending on the ETL configuration specified at the extractor configurator
-	def prepare(self):
-		
-		extraction_commands = []
-		
-		extraction_commands = load_deploy_commands(scrapers_config_path)
-
-		return extraction_commands
+		self.extraction_scheme = config.scheme
 
 
 
 	def ingest(self, verbose = False):
 
 		batch = pd.DataFrame({})
-		self.log.append('Issuing a new extraction...\n')
-		extractors = ext.create_scrapper('Reddit01',self.modality)
-		extractor.grip() 
-		self.log.append('Retrieving obtained data.')
-		batch = spider_swarm.retrieve_batch()
-		self.log.append('\ndone.')
+		if verbose == True: self.log.append('Issuing a new extraction...\n')
 
+		extractor = ext.create_extractor('Reddit01',self.extraction_scheme)
+		extractor.grip() 
+
+		if verbose == True: self.log.append('Retrieving obtained data.')
+	
+		batch = extractor.retrieve_batch()
+
+		if verbose == True: self.log.append('\ndone.')
+		if verbose == True: for key in self.log: print(key)
+		
 		return batch
 
 
 
 	def run(self):
 
-		print('\n Issuing a new extraction...\n')
-	
+		print('\nRunning...\n')
+
 		data_batch = pd.DataFrame({})
 		data_batch = self.ingest()
 
-		print('\nThe data stream is now inside the pipeline!')
+		print('\nThe data batch is now inside the pipeline!')
 		print('\nReady to perform preparation procedures...')
 
 		return data_batch
@@ -69,7 +73,7 @@ class Extractor:
 
 
 
-class Transforms:
+class Transform:
 
 
 	def __init__(self, params):
@@ -126,7 +130,7 @@ class Transforms:
 
 
 
-class Loader:
+class Load:
 
 	def __init__(self, params):
 		pass

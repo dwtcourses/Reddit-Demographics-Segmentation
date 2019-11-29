@@ -13,6 +13,7 @@ class Swarm:
 
 	def __init__(self,id_, deploy_commands):
 
+		self.id = id_
 		self.deploy_commands = self.unroll(deploy_commands)
 		self.yield_paths = deploy_commands.yield_paths
 		self.log = []
