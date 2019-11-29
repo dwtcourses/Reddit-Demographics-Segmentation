@@ -2,11 +2,11 @@
 
 import praw
 
-client_secret = 'BTDUTAyqlewMvJguZvo6ctXfkVU'
-client_id = 'uOMVRzNTdw7LDg'
-username = 'ter_dev'
-password = 'fed150'
-
+client_secret = 
+client_id = 
+username = 
+password = 
+#bye dev account
 
 class RedditAPI:
 
