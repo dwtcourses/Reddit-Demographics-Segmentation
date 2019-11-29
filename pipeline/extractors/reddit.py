@@ -1,12 +1,13 @@
 
 
 import praw
+import os
 
-client_secret = 
-client_id = 
-username = 
-password = 
-#bye dev account
+client_secret = os.environ.get('CLIENT_SECRET')
+client_id = os.environ.get('CLIENT_ID')
+username = os.eviron.get('USERNAME')
+password =  os.environ.get('PASSWORD')
+
 
 class RedditAPI:
 
