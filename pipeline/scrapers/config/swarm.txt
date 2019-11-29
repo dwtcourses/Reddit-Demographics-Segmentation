@@ -1,0 +1,4 @@
+{"name": "RedditSpider",
+"allowed_domains":"reddit.com",
+"swarm_size": 1,
+"seeds": ["https://www.reddit.com/r/cringe/"]}

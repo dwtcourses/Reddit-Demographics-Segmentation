@@ -4,8 +4,8 @@ from spider import RedditSpider
 import pandas as pd
 from scrapy.crawler import CrawlerProcess
 
-#Wrapper for a swarm of scrapy spiders
-#
+#Wrapper for a swarm object of webscrapers
+
 
 class Swarm:
 

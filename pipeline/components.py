@@ -1,10 +1,13 @@
 
 import sys
-sys.path.append('/scrapers')
-from spider_api import Swarm 
+import json
+
+
+from scrapers import scrapers as ext
 import pandas as pd
 from nltk.tokenize import MWETokenizer
-spiders_config_path = '/scrapers/config/spiders.txt'
+
+
 
 """
 The extract module performs loading operations over an specified extraction domain. 
@@ -14,51 +17,37 @@ License: ThisIsMyStuffBitch
 """
 
 
-def load_deploy_commands(path):
-	
-	deploy_commands = []
-
-	"""
-	grabs the dictionary with the seed, rules, domain and the number of spiders
-	"""
-
-	return deploy_commands
-
 
 
 class Extractor:
 
 
 	def __init__(self, params):
-		pass
+		
+		modality = params.modality
+		self.log = []
 
 
 	#Will perform different extraction schemes depending on the ETL configuration specified at the extractor configurator
 	def prepare(self):
 		
-
 		extraction_commands = []
 		
-		if self.params.source == 'WS':
-
-			global spiders_config_path
-			extraction_commands = load_deploy_commands(scrapers_config_path)
+		extraction_commands = load_deploy_commands(scrapers_config_path)
 
 		return extraction_commands
 
 
 
-	def launch_swarm(self, extraction_commands, verbose = False):
+	def ingest(self, verbose = False):
 
-		batch = pd.DataFrame()
-	
-		print('Deploying spiders swarm...\n')
-		spider_swarm = Swarm('Reddit01',extraction_commands)
-		spider_swarm.grip() 
-		print('Retrieving obtained data.')
+		batch = pd.DataFrame({})
+		self.log.append('Issuing a new extraction...\n')
+		extractors = ext.create_scrapper('Reddit01',self.modality)
+		extractor.grip() 
+		self.log.append('Retrieving obtained data.')
 		batch = spider_swarm.retrieve_batch()
-	
-		print('\ndone.')
+		self.log.append('\ndone.')
 
 		return batch
 
@@ -66,12 +55,10 @@ class Extractor:
 
 	def run(self):
 
-		print('\nPreparing extraction process...\n')
-		extractors = self.prepare()
+		print('\n Issuing a new extraction...\n')
+	
 		data_batch = pd.DataFrame({})
-
-		if self.params.source == 'WS':
-			data_batch = launch_swarm(extractors)
+		data_batch = self.ingest()
 
 		print('\nThe data stream is now inside the pipeline!')
 		print('\nReady to perform preparation procedures...')

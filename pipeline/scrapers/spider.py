@@ -12,29 +12,33 @@ from scrapy.loader.processors import MapCompose
 
 class RedditComment(Item):
 	
+	id_ = field()
 	body = Field()
 
-
-def unwrap(arr):
-	pass
 
 
 class RedditSpider(CrawlSpider):
 
 	name = self.name
 	start_url = self.start_url
-	allowed_domains = unwrap(self.allowed_domains)
+	allowed_domains = self.start_url
 
-	rules = ((LinkExtractor(), callback = parse_comment))
-
-
-	def parse_items(self, response):
-		pass
-
-	def parse_comment(self):
-		pass
+	#settings for allowed horizontal movement
+	rules = [(LinkExtractor(), callback = parse)}
 
 
 
-if __init__ == '__main__':
+	def parse(self, response):
+    		
+        comments = response.css('.comments::text').extract()
+        #Give the extracted content row wise
+        for item in zip(titles,votes,times,comments):
+          
+            scraped_comment = item[0]
+
+            yield scraped_info
+
+
+
+if __name__ == "__main__":
 	run_spider()
