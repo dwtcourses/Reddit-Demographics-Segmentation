@@ -78,4 +78,4 @@ class RedditAPI:
 
 if __name__ == '__main__':
 	api = RedditAPI()
-	print(api.hot_comments('python', 5))
+	print(api.new_comments('python', 5))
