@@ -47,7 +47,7 @@ class RedditAPI:
 
 	def new_comments(self, topic, batch_size):
 		
-		sub_reddit = self.reddit.subrredit(topic)
+		sub_reddit = self.reddit.subreddit(topic)
 		threads = sub_reddit.new(limit = batch_size)
 		batch = pd.DataFrame()
 
